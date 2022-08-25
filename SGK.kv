@@ -1,0 +1,412 @@
+#:kivy 1.0.9
+
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
+
+<MainScreen>
+
+    GridLayout:
+        cols:0
+        rows:0
+
+        canvas:
+            Rectangle:
+                pos: 0,0
+                size: root.width, root.height
+                texture: Gradient.horizontal(get_color_from_hex("fe7a53"), get_color_from_hex("fdb6a2"))
+
+            Color:
+                rgb: get_color_from_hex('#33333d')
+            Rectangle:
+                pos: 0, 0
+                size: self.width, 20
+
+        Label:
+            text: "Summer Games Killer App"
+            font_size: 85
+            pos: root.center_x - self.width/2, root.height - (self.height + 5)
+            color: 0,0,0,0.7
+
+        GridLayout:
+            id: playerGrid
+            cols: 5
+            pos: (root.width - self.width)/2, (root.height - self.height)/2 - 50
+            size: root.width - 20, root.height - 150
+
+        GridLayout:
+            rows:2
+            cols:1
+            width: root.width/2
+            height: 200
+
+            pos: root.center_x - self.width/2, root.center_y - self.height - 125
+
+            Label:
+                text: "Entre ton mot de passe puis clique sur ton nom"
+                font_size: 50
+                color: 0,0,0
+
+            TextInput:
+                id: password
+                pos_hint_y: None
+                hint_text: "mot de passe"
+                font_size: self.height - 30
+                halign: 'center'
+                valign: 'middle'
+
+        Image:
+            source: 'logo.png'
+            size: self.texture_size[0]/2, self.texture_size[0]/2
+            pos: root.center_x - self.texture_size[0]/5, -150
+
+        Label:
+            text: "No Right Reserved to Summer Games Corporation"
+            font_size: 15
+            color: 1,1,1
+            pos: root.center_x - self.width/2, - 40
+
+        Button:
+            text: "Liste Jeux libres"
+            pos: 40, 40
+            font_size: 55
+            width: self.texture_size[0] + 40
+            background_color: 0.2, 0.3, 0.2, 0.5
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'free_game'
+
+<PlayerMissionScreen>
+    GridLayout:
+        canvas:
+            Rectangle:
+                pos: 0,0
+                size: root.width, root.height
+                texture: Gradient.horizontal(get_color_from_hex("fdb6a2"), get_color_from_hex("fe7a53"))
+
+            Color:
+                rgb: get_color_from_hex('#33333d')
+            Rectangle:
+                pos: 0, 0
+                size: self.width, 20
+
+        Button:
+            id: button_back
+            text: "Retour"
+            font_size: 30
+            width: self.texture_size[0] + 40
+            pos: 0 + 20, root.height - self.height - 20
+            background_color: 1, 0.2, 0.2, 0.5
+
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = "main"
+
+        Label:
+            id: label_name
+            text: ""
+            font_size: 65
+            pos: root.center_x - self.width/2, root.height - (self.height + 5)
+
+        Label:
+            text: "Restricted Area only authorized can read this !"
+            font_size: 25
+            color: 1,0.1,0.1
+            pos: root.center_x - self.width/2, root.height - self.height - 75
+
+        Label:
+            id: label_current_target
+            text: ""
+            font_size: 55
+            pos: root.center_x - self.width/2, root.height*2/3 - (self.height + 5)
+
+        Label:
+            id: label_mission
+            text: ""
+            font_size: 35
+            pos: root.center_x - self.width/2, root.height*1/3 - (self.height + 5)
+
+        Button:
+            text: "Mission terminé !"
+            pos: root.center_x - self.width/2, 40
+            font_size: 55
+            width: self.texture_size[0] + 40
+            background_color: 0.2, 1, 0.2, 0.5
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = "mission_completed"
+
+
+        Label:
+            text: "No Right Reserved to Summer Games Corporation"
+            font_size: 15
+            color: 0.5,0.5,0.5
+            pos: root.center_x - self.width/2, - 40
+
+
+<PlayerInfoScreen>
+    GridLayout:
+
+        canvas:
+            Rectangle:
+                pos: 0,0
+                size: root.width, root.height
+                texture: Gradient.horizontal(get_color_from_hex("fdb6a2"), get_color_from_hex("fe7a53"))
+
+            Color:
+                rgb: get_color_from_hex('#33333d')
+            Rectangle:
+                pos: 0, 0
+                size: self.width, 20
+
+        Label:
+            id: label_name
+            text: ""
+            font_size: 65
+            pos: root.center_x - self.width/2, root.height - (self.height + 5)
+
+        Label:
+            text: "Choissis ton mot de passe et indique ton équipe"
+            font_size: 65
+            pos: root.center_x - self.width/2, root.height - (self.height + 5) - 100
+            color: 0,0,0,0.7
+
+        Button:
+            id: button_back
+            text: "Retour"
+            font_size: 30
+            width: self.texture_size[0] + 40
+            pos: 0 + 20, root.height - self.height - 20
+            background_color: 1, 0.2, 0.2, 0.5
+
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = "main"
+
+        Label:
+            text: "No Right Reserved to Summer Games Corporation"
+            font_size: 15
+            color: 0.5,0.5,0.5
+            pos: root.center_x - self.width/2, - 40
+
+        GridLayout:
+            rows:2
+            cols:1
+            width: root.width/2
+            height: 200
+
+            pos: root.center_x - self.width/2, root.center_y - self.height + 300
+
+            Label:
+                id: label_team
+                text: 'Selectionne ton équipe : None'
+                font_size: 50
+                color: 0,0,0
+                pos: 0,100
+
+            GridLayout:
+                cols:2
+                rows:1
+
+                Button:
+                    text: 'Bleu'
+                    size_hint_y: None
+                    height: 100
+                    font_size:45
+                    background_color: 0, 0, 1, 1
+                    on_press: root.select_team('Bleu')
+
+                Button:
+                    text: 'Rouge'
+                    size_hint_y: None
+                    height: 100
+                    font_size:45
+                    background_color: 1, 0, 0, 1
+                    on_press: root.select_team('Rouge')
+
+        GridLayout:
+            rows:2
+            cols:1
+            width: root.width/2
+            height: 200
+
+            pos: root.center_x - self.width/2, root.center_y - self.height
+
+            Label:
+                text: "Entre ton mot de passe"
+                font_size: 50
+                color: 0,0,0
+
+            TextInput:
+                id: set_password
+                pos_hint_y: None
+                hint_text: "mot de passe"
+                font_size: self.height - 30
+                halign: 'center'
+                valign: 'middle'
+
+        Button:
+            text: "Valider"
+            pos: root.center_x - self.width/2, 40
+            width: self.texture_size[0] + 400
+            font_size: 55
+            background_color: 0.2, 1, 0.2, 0.5
+            on_press: root.validation()
+
+
+<MissionCompletedScreen>
+    GridLayout:
+
+        canvas:
+            Rectangle:
+                pos: 0,0
+                size: root.width, root.height
+                texture: Gradient.horizontal(get_color_from_hex("fe7a53"), get_color_from_hex("fdb6a2"))
+
+            Color:
+                rgb: get_color_from_hex('#33333d')
+            Rectangle:
+                pos: 0, 0
+                size: self.width, 20
+
+        Label:
+            text: "Tu as réussis à tuer ta cible, félicitation !"
+            font_size: 65
+            pos: root.center_x - self.width/2, root.height - (self.height + 5)
+            color: 0,0,0,0.7
+
+        Button:
+            id: button_back
+            text: "Retour"
+            font_size: 30
+            width: self.texture_size[0] + 40
+            pos: 0 + 20, root.height - self.height - 20
+            background_color: 1, 0.2, 0.2, 0.5
+
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = "mission"
+
+        Label:
+            text: "No Right Reserved to Summer Games Corporation"
+            font_size: 15
+            color: 0.5,0.5,0.5
+            pos: root.center_x - self.width/2, - 40
+
+        GridLayout:
+            rows:2
+            cols:1
+            width: root.width/2
+            height: 200
+
+            pos: root.center_x - self.width/2, root.center_y - self.height + 200
+
+            Label:
+                text: "La cible tuée doit entrer son mot de passe"
+                font_size: 50
+                color: 0,0,0
+
+            TextInput:
+                id: target_password
+                pos_hint_y: None
+                hint_text: "mot de passe"
+                font_size: self.height - 30
+                halign: 'center'
+                valign: 'middle'
+
+        Button:
+            text: "Valider"
+            pos: root.center_x - self.width/2, 40
+            width: self.texture_size[0] + 400
+            font_size: 55
+            background_color: 0.2, 1, 0.2, 0.5
+            on_press: root.validation()
+
+<FreeGamesScreen>
+    GridLayout:
+        cols: 1
+        rows: 2
+        canvas:
+            Rectangle:
+                pos: 0,0
+                size: root.width, root.height
+                texture: Gradient.horizontal(get_color_from_hex("fdb6a2"), get_color_from_hex("fe7a53"))
+
+            Color:
+                rgb: get_color_from_hex('#33333d')
+            Rectangle:
+                pos: 0, 0
+                size: self.width, 20
+
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint_y: None
+            height: 200
+
+            Button:
+                id: button_back
+                text: "Retour"
+                font_size: 30
+                width: self.texture_size[0] + 40
+                background_color: 1, 0.2, 0.2, 0.5
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = "main"
+
+            Label:
+                text: "Jeux libres disponible"
+                color: 0,0,0
+                font_size: 75
+
+        GridLayout:
+            cols:3
+
+
+            Label:
+                text: "Cours de batterie avec Drazic =D"
+                font_size: 30
+
+            Label:
+                text: "Ping pong"
+                font_size: 30
+
+            Label:
+                text: "Palets Bretons"
+                font_size: 30
+
+            Label:
+                text: "Pétanque"
+                font_size: 30
+
+            Label:
+                text: "Molkky"
+                font_size: 30
+
+            Label:
+                text: "Raquettes"
+                font_size: 30
+
+            Label:
+                text: "Voley"
+                font_size: 30
+
+            Label:
+                text: "Foot"
+                font_size: 30
+
+            Label:
+                text: "Criquet"
+                font_size: 30
+
+            Label:
+                text: "Times Up"
+                font_size: 30
+
+            Label:
+                text: "Loup Garou"
+                font_size: 30
+
+            Label:
+                text: "Beer pong avec une super table"
+                font_size: 30
